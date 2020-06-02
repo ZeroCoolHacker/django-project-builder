@@ -1,0 +1,10 @@
+{% autoescape on%}
+from django.apps import AppConfig
+
+
+class DjAppsConfig(AppConfig):
+    name = '{{name}}'
+    label = {{label}}
+    verbose_name = {{verbose_name}}
+
+{% endautoescape %}
