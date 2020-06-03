@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.loader import render_to_string
 
 # Create your models here.
 class Dj_Model(models.Model):
@@ -18,7 +19,14 @@ class Dj_Model(models.Model):
         """Unicode representation of Dj_Model."""
         return self.name
 
-
+    def generate_file(self):
+        context = {
+            'model': self
+        }
+        template = render_to_string('builder/model_builder.html', context)
+        with open('generated_model.py', 'w') as f:
+            f.write(template)
+        print("Done")
 
 
 class Dj_ModelField(models.Model):

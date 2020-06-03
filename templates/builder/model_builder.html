@@ -1,0 +1,16 @@
+{% autoescape on%}
+from django.db import models
+
+class {{model.name}}(models.Model):
+    {% for line in model.dj_modelline_set.all %}
+    {{line.field_name}} = {{line.field}}()
+    {% endfor %}
+
+    class Meta:
+    """Meta definition for {{model.name}}."""
+
+    verbose_name = '{{model.verbose_name}}'
+    verbose_name_plural = '{{model.verbose_name_plural}}'
+
+
+{% endautoescape %}
