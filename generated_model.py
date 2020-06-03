@@ -2,18 +2,17 @@
 from django.db import models
 
 class Car(models.Model):
-    
-    Make = CharField()
-    
-    Model = CharField()
-    
-    Description = TextField()
+
+
+    Make = models.CharField(null=False,blank=False)
+    Model = models.CharField(null=False,blank=False)
+    Description = models.TextField(null=False,blank=False)
     
 
     class Meta:
-    """Meta definition for Car."""
+        """Meta definition for Car."""
 
-    verbose_name = 'Car'
-    verbose_name_plural = 'Car'
+        verbose_name = 'Car'
+        verbose_name_plural = 'Car'
 
 

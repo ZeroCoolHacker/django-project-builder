@@ -2,15 +2,16 @@
 from django.db import models
 
 class {{model.name}}(models.Model):
-    {% for line in model.dj_modelline_set.all %}
-    {{line.field_name}} = {{line.field}}()
+
+
+    {% for line in model.dj_modelline_set.all %}{{line.field_name}} = models.{{line.field}}(null={%if line.null%}True{%else%}False{%endif%},blank={%if line.blank%}True{%else%}False{%endif%})
     {% endfor %}
 
     class Meta:
-    """Meta definition for {{model.name}}."""
+        """Meta definition for {{model.name}}."""
 
-    verbose_name = '{{model.verbose_name}}'
-    verbose_name_plural = '{{model.verbose_name_plural}}'
+        verbose_name = '{{model.verbose_name}}'
+        verbose_name_plural = '{{model.verbose_name_plural}}'
 
 
 {% endautoescape %}
